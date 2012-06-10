@@ -2,7 +2,7 @@ redis-failover
 ==============
 
 マスター/スレーブによる自動フェイルオーバー機能を持つ Redis クライアントです。
-npm　の [redis](https://github.com/mranney/node_redis) クライアントをベースにフェイルオーバー機能を追加しています。
+npm の [redis](https://github.com/mranney/node_redis) クライアントをベースにフェイルオーバー機能を追加しています。
 
 ## Install
 
