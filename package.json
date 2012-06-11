@@ -9,10 +9,16 @@
   },
   "main": "./lib/failover.js",
   "dependencies": {
-      "redis": "*"
+    "redis": "*"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "*",
+    "chai": "*"
+  },
   "optionalDependencies": {},
+  "scripts": {
+    "test": "./node_modules/.bin/mocha -R spec" 
+  },
   "engines": {
     "node": "*"
   }
