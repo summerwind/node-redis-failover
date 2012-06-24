@@ -1,8 +1,8 @@
 {
   "author": "Moto Ishizawa <summerwind.jp@gmail.com> (http://summerwind.jp)",
   "name": "redis-failover",
-  "description": "A Redis client wrapper with automatic master/slave failover solution for Node.js",
-  "version": "0.0.1",
+  "description": "A Redis client wrapper with automatic master/slave failover solution for Node.js.",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "git://github.com/summerwind/node-redis-failover.git"
