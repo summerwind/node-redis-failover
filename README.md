@@ -2,7 +2,7 @@ redis-failover
 ==============
 
 マスター/スレーブによる自動フェイルオーバー機能を持つ Redis クライアントです。
-npm の [redis](https://github.com/mranney/node_redis) クライアントをベースにフェイルオーバー機能を追加しています。
+npm の [redis](https://github.com/mranney/node_redis) をベースにフェイルオーバー機能を追加しています。
 
 ## Install
 
@@ -16,7 +16,7 @@ npm の [redis](https://github.com/mranney/node_redis) クライアントをベ�
 
     var redis = require('redis-failover');
 
-サーバーリストを定義します。配列の最初の要素はマスターサーバーにあたるポート番号とホスト名を含み、それ以降の要素はスレーブサーバーとして扱われます。
+サーバーリスト `servers` を定義します。配列の最初の要素はマスターサーバーにあたるポート番号とホスト名を含み、それ以降の要素は全てスレーブサーバーとして扱われます。
 
     var servers = [
         [ 6379, 'master.redis.domain.jp' ],
@@ -33,11 +33,24 @@ npm の [redis](https://github.com/mranney/node_redis) クライアントをベ�
     client.set("key", "value");
     client.quit();
    
-ファイルオーバーの機能は `failover` というイベントとして提供されます。イベントハンドラを設定すれば、新しいクライアントインスタンス `new_client` を受け取ることができます。新しいクライアントインスタンスは、サーバーリストで定義した2番目以降のサーバーに接続した状態で提供されます。
+ファイルオーバーの機能は `failover` というイベントとして提供されます。イベントハンドラを設定すれば、新しいクライアントインスタンス `new_client` を受け取ることができます。新しいクライアントインスタンスは、サーバーリストで定義した2番目のサーバーに接続した状態で提供されます。
 
     redis.on('failover', function(new_client) {
     	// Something to do...
     });
+
+## Option
+
+`createClient` メソッドの `option` には、redis-failover 独自のオプションを指定することもできます。独自オプションの項目については以下の通りです。
+
+**auto_promote**
+
+このオプションの値に `true` を指定すると、`failover` イベントの発生時に、新しく接続したサーバーに対して、`SLAVEOF NO ONE` コマンドを自動的に送信します。これにより、スレーブサーバーの Redis をマスターサーバーとして自動昇格することができます。オプションは以下のように設定します。
+
+    var option = {
+    	auto_promote: true
+    };
+
 
 ## License
 
