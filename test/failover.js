@@ -11,7 +11,8 @@ var servers = [
 ];
 
 describe('RedisFailover', function() {
-    it('サーバー情報の取得', function() {
+    //it('サーバー情報の取得', function() {
+    it('nextServer()', function() {
         redis.servers = servers;
         redis.current = 0;
         
@@ -36,7 +37,8 @@ describe('RedisFailover', function() {
         server[1].should.equal(servers[0][1]);
     });
     
-    it('クライアントの取得', function() { 
+    //it('クライアントの取得', function() { 
+    it('getClient()', function() { 
         redis.servers = servers;     
         redis.current = 0;
         
@@ -53,7 +55,8 @@ describe('RedisFailover', function() {
         client.listeners.should.have.length(1);
     });
     
-    it('クライアントの生成', function() { 
+    //it('クライアントの生成', function() { 
+    it('createClient()', function() { 
         var servers = [
             [ 6379, 'master.redis.summerwind.com' ],
             [ 6380, 'slave1.redis.summerwind.com' ]
